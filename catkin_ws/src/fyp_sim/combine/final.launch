@@ -1,0 +1,7 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<launch>
+
+  <include file="$(find fyp_sim)/launch/world.launch"/>
+  <include file="$(find fyp_sim)/launch/gazebo.launch"/>
+
+</launch>

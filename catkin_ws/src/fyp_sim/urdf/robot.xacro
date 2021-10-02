@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="robot_platform" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- <xacro:include filename="$(find fyp_sim)/urdf/materials.xacro"/> -->
+  <xacro:include filename="$(find fyp_sim)/urdf/robot.gazebo"/>
+
+  <!-- dummy link -->
+  <link name="dummy">
+  </link>
+
+  <!-- chassis -->
+  <link name="chassis">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="6.52316744505344" />
+      <inertia
+        ixx="0.0385919077427861"
+        ixy="-1.42698858839734E-16"
+        ixz="-8.43576589332318E-05"
+        iyy="0.0585218852507233"
+        iyz="8.03899668248163E-17"
+        izz="0.0423119666555374" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/chassis.stl" scale="0.01 0.01 0.01" />
+      </geometry>
+      <material
+        name="chassis_material">
+        <color
+          rgba="0.5 0.5 0.5 1.0" />
+      </material>
+    </visual>
+    <collision name="chassis_collision">>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/chassis.stl" scale="0.01 0.01 0.01" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- back wheel left -->
+  <link name="back_wheel_left">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="back_wheel_left_material">
+        <color
+          rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision name="back_wheel_left_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- back wheel right -->
+  <link name="back_wheel_right">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="back_wheel_right_material">
+        <color
+          rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision name="back_wheel_right_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- front wheel left connector -->
+  <link name="front_wheel_left_connector">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel_connector.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="front_wheel_left_connector_material">
+        <color
+          rgba="0.203125 0.238281 0.285156 1.0" />
+      </material>
+    </visual>
+    <collision name="front_wheel_left_connector_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel_connector.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- front wheel right connector -->
+  <link name="front_wheel_right_connector">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel_connector.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="front_wheel_right_connector_material">
+        <color
+          rgba="0.203125 0.238281 0.285156 1.0" />
+      </material>
+    </visual>
+    <collision name="front_wheel_right_connector_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel_connector.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- front wheel right -->
+  <link name="front_wheel_right">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="front_wheel_right_material">
+        <color
+          rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision name="front_wheel_right_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- front wheel left -->
+  <link name="front_wheel_left">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.853825179360506" />
+      <inertia
+        ixx="0.00259189846991135"
+        ixy="2.99550060933435E-17"
+        ixz="2.12803718614051E-20"
+        iyy="0.00473869680320454"
+        iyz="-7.59085432106584E-18"
+        izz="0.00237094198835257" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+      <material
+        name="front_wheel_left_material">
+        <color
+          rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision name="front_wheel_left_collision">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="dummy_joint" type="fixed">
+    <origin
+      xyz="0 0 0.23487"
+      rpy="0 0 0" />
+    <parent
+      link="dummy" />
+    <child
+      link="chassis" />
+  </joint>
+
+  <joint name="back_LW_joint"
+    type="continuous">
+    <origin
+      xyz="0.23591 -0.24479 -0.07497"
+      rpy="${pi/2} 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="back_wheel_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="back_RW_joint"
+    type="continuous">
+    <origin
+      xyz="0.23591 0.24521 -0.07487"
+      rpy="${-pi/2} 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="back_wheel_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="front_LW_con_joint"
+    type="continuous">
+    <origin
+      xyz="-0.35409 -0.21979 0.01513"
+      rpy="0 0 ${pi/2}" />
+    <parent
+      link="chassis" />
+    <child
+      link="front_wheel_left_connector" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="front_RW_con_joint"
+    type="continuous">
+    <origin
+      xyz="-0.35409 0.22021 0.01513"
+      rpy="0 0 ${pi/2}" />
+    <parent
+      link="chassis" />
+    <child
+      link="front_wheel_right_connector" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="front_RW_joint"
+    type="continuous">
+    <origin
+      xyz="-0.35409 0.22521 -0.13487"
+      rpy="${-pi/2} 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="front_wheel_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="front_LW_joint"
+    type="continuous">
+    <origin
+      xyz="-0.35409 -0.21479 -0.13487"
+      rpy="${-pi/2} 0 0" />
+    <parent
+      link="chassis"/>
+    <child
+      link="front_wheel_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+</robot>

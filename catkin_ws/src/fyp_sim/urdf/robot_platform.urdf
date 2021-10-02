@@ -2,6 +2,9 @@
 
 <robot
   name="robot_platform">
+
+  <link name="dummy"></link>
+
   <link name="link_0">
     <inertial>
       <origin
@@ -82,7 +85,7 @@
     </collision>
   </link>
 
-  <link name="link_2">
+  <!-- <link name="link_2">
     <inertial>
       <origin
         xyz="-2.4980018054066E-16 1.0842021724855E-16 -0.140248446514204"
@@ -200,7 +203,14 @@
           filename="package://fyp_sim/meshes/link_4.STL" />
       </geometry>
     </collision>
-  </link>
+  </link> -->
+
+  <joint name="dummy_joint" type="fixed">
+    <parent
+      link="dummy" />
+    <child
+      link="link_0" />
+  </joint>
 
   <joint name="joint_1"
     type="continuous">
@@ -215,7 +225,7 @@
       xyz="0 0 1" />
   </joint>
 
-  <joint name="joint_2"
+  <!-- <joint name="joint_2"
     type="continuous">
     <origin
       xyz="0.5175 0.22 -0.02"
@@ -240,7 +250,7 @@
     <axis
       xyz="0 0 1" />
   </joint>
-  
+
   <joint name="joint_4"
     type="continuous">
     <origin
@@ -251,6 +261,5 @@
     <child
       link="link_4" />
     <axis
-      xyz="0 0 -1" />
-  </joint>
+      xyz="0 0 -1" /> -->
 </robot>

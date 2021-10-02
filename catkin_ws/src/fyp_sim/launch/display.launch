@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
-  <arg
-    name="model" />
-  <param
-    name="robot_description"
-    textfile="$(find fyp_sim)/urdf/robot_platform.urdf" />
-  <node
-    name="joint_state_publisher_gui"
-    pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
+    <param
+      name="robot_description"
+      command="$(find xacro)/xacro --inorder '$(find fyp_sim)/urdf/robot.xacro'"/>
+
+    <node
+      name="joint_state_publisher"
+      pkg="joint_state_publisher"
+      type="joint_state_publisher">
+      <param name="use_gui" value="False"/>
+     </node>
+
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
@@ -17,5 +19,6 @@
     name="rviz"
     pkg="rviz"
     type="rviz"
-    args="-d $(find fyp_sim)/urdf.rviz" />
+
+    />
 </launch>

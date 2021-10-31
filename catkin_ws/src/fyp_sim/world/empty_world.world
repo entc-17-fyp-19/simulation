@@ -11,5 +11,13 @@
 		<include>
 			<uri>model://ground_plane</uri>
 		</include>
+
+		<spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+    </spherical_coordinates>
+
 	</world>
 </sdf>

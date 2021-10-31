@@ -1,0 +1,8 @@
+prefix=/home/tharaka/ROS/fyp/catkin_ws/install
+
+Name: platform_controller
+Description: Description of platform_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

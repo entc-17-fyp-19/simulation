@@ -2,11 +2,47 @@
 <launch>
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find fyp_sim)/urdf/robot.xacro'"/>
-  <arg name="x" default="0"/>
-  <arg name="y" default="0"/>
+  <arg name="x" default="1"/>
+  <arg name="y" default="1"/>
   <arg name="z" default="1"/>
-  <!-- send fake joint values -->
-  <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output = "screen"
-        args = "-urdf -param robot_description -model robot_platform -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
+
+  <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output = "screen"
+        args = "-urdf -param robot_description -model robot_platform_urdf -x $(arg x) -y $(arg y) -z $(arg z)"/>
+
+
+  <!-- send fake joint values -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+  </node> -->
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" output="screen" if="true">
+    <remap from="/joint_states" to="/robot_platform/joint_states"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+    <remap from="/joint_states" to="/robot_platform/joint_states"/>
+  </node>
+
+  <rosparam file="$(find platform_controller)/config/robot_control.yaml" command="load"/>
+  <!-- <rosparam file="$(find fyp_sim)/config/gazebo_ros_control_params.yaml" command="load"/> -->
+
+  <node name="controller_manager" pkg="controller_manager" type="spawner"
+        respawn="true" output="screen" ns="/robot_platform_control"
+        args="back_LW_joint_velocity_controller back_RW_joint_velocity_controller front_LW_con_joint_position_controller front_RW_con_joint_position_controller joint_state_controller"/>
+
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+
+    />
 </launch>
+
+<!-- "linear:
+  x:0.8
+  y:0.0
+  z:0.0
+angular:
+  x:0.0
+  y:0.0
+  z:1.0" -->

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<robot name="robot_platform" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="robot_platform_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- <xacro:include filename="$(find fyp_sim)/urdf/materials.xacro"/> -->
-  <xacro:include filename="$(find fyp_sim)/urdf/robot.gazebo"/>
+  <xacro:include filename="$(find fyp_sim)/urdf/robot.gazebo.xacro"/>
+
 
   <!-- dummy link -->
-  <link name="dummy">
-  </link>
+  <link name="base_footprint"/>
 
   <!-- chassis -->
   <link name="chassis">
@@ -88,6 +88,16 @@
         <mesh
           filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
 
@@ -129,6 +139,16 @@
         <mesh
           filename="package://fyp_sim/meshes/back_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
 
@@ -252,6 +272,16 @@
         <mesh
           filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
 
@@ -293,16 +323,26 @@
         <mesh
           filename="package://fyp_sim/meshes/front_wheel.stl" scale="0.01 0.01 0.01"/>
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <slip1>1.0</slip1>
+            <slip2>1.0</slip2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
 
 
-  <joint name="dummy_joint" type="fixed">
+  <joint name="base_joint" type="fixed">
     <origin
-      xyz="0 0 0.23487"
+      xyz="0 0 0.22987"
       rpy="0 0 0" />
     <parent
-      link="dummy" />
+      link="base_footprint" />
     <child
       link="chassis" />
   </joint>
@@ -310,7 +350,7 @@
   <joint name="back_LW_joint"
     type="continuous">
     <origin
-      xyz="0.23591 -0.24479 -0.07497"
+      xyz="0.23591 -0.245 -0.06987"
       rpy="${pi/2} 0 0" />
     <parent
       link="chassis" />
@@ -323,7 +363,7 @@
   <joint name="back_RW_joint"
     type="continuous">
     <origin
-      xyz="0.23591 0.24521 -0.07487"
+      xyz="0.23591 0.245 -0.06987"
       rpy="${-pi/2} 0 0" />
     <parent
       link="chassis" />
@@ -334,9 +374,10 @@
   </joint>
 
   <joint name="front_LW_con_joint"
-    type="continuous">
+    type="revolute">
+    <limit effort="30" velocity="4.0" lower="-3.14159" upper="3.14159"/>
     <origin
-      xyz="-0.35409 -0.21979 0.01513"
+      xyz="-0.35409 -0.22 0.02013"
       rpy="0 0 ${pi/2}" />
     <parent
       link="chassis" />
@@ -347,9 +388,10 @@
   </joint>
 
   <joint name="front_RW_con_joint"
-    type="continuous">
+    type="revolute">
+    <limit effort="30" velocity="4.0" lower="-3.14159" upper="3.14159"/>
     <origin
-      xyz="-0.35409 0.22021 0.01513"
+      xyz="-0.35409 0.22 0.02013"
       rpy="0 0 ${pi/2}" />
     <parent
       link="chassis" />
@@ -362,27 +404,73 @@
   <joint name="front_RW_joint"
     type="continuous">
     <origin
-      xyz="-0.35409 0.22521 -0.13487"
-      rpy="${-pi/2} 0 0" />
+      xyz="0 0 -0.15"
+      rpy="0 ${pi/2} 0" />
     <parent
-      link="chassis" />
+      link="front_wheel_right_connector" />
     <child
       link="front_wheel_right" />
     <axis
       xyz="0 0 1" />
   </joint>
 
+<!-- "-0.35409 -0.22 -0.13487" -->
+
   <joint name="front_LW_joint"
     type="continuous">
     <origin
-      xyz="-0.35409 -0.21479 -0.13487"
-      rpy="${-pi/2} 0 0" />
+      xyz="0 0 -0.15"
+      rpy="0 ${-pi/2} 0" />
     <parent
-      link="chassis"/>
+      link="front_wheel_left_connector"/>
     <child
       link="front_wheel_left" />
     <axis
       xyz="0 0 1" />
   </joint>
+
+  <transmission name="back_LW_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_LW_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_LW_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="back_RW_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_RW_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_RW_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="front_RW_con_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_RW_con_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_RW_con_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="front_LW_con_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_LW_con_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_LW_con_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
 
 </robot>

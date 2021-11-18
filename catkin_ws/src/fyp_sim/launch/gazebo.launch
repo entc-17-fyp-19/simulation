@@ -36,6 +36,12 @@
     type="rviz"
 
     />
+
+  <node name="odom_pub" pkg="odometry" type="odom_data_pub"/>
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+  <node name="teleop_ctrl" pkg="keyboard_ctrl" type="keyboard_ctrl_node"/>
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom 30"/>
+
 </launch>
 
 <!-- "linear:

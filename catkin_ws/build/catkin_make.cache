@@ -1,2 +1,2 @@
-fyp_sim:platform_controller
+fyp_sim:keyboard_ctrl:odometry:platform_controller
 -DCATKIN_DEVEL_PREFIX=/home/tharaka/ROS/fyp/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tharaka/ROS/fyp/catkin_ws/install -G Unix Makefiles

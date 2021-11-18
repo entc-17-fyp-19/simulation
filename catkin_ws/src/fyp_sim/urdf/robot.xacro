@@ -370,12 +370,12 @@
     <child
       link="back_wheel_right" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
 
   <joint name="front_LW_con_joint"
     type="revolute">
-    <limit effort="30" velocity="4.0" lower="-3.14159" upper="3.14159"/>
+    <limit effort="30" velocity="${pi}" lower="${-pi/3}" upper="${pi/3}"/>
     <origin
       xyz="-0.35409 -0.22 0.02013"
       rpy="0 0 ${pi/2}" />
@@ -389,7 +389,7 @@
 
   <joint name="front_RW_con_joint"
     type="revolute">
-    <limit effort="30" velocity="4.0" lower="-3.14159" upper="3.14159"/>
+    <limit effort="30" velocity="${pi}" lower="${-pi/3}" upper="${pi/3}"/>
     <origin
       xyz="-0.35409 0.22 0.02013"
       rpy="0 0 ${pi/2}" />

@@ -6,4 +6,6 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("fyp_sim")
+subdirs("keyboard_ctrl")
+subdirs("odometry")
 subdirs("platform_controller")

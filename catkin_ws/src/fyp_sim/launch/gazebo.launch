@@ -20,7 +20,7 @@
   </node>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
-    <remap from="/joint_states" to="/robot_platform/joint_states"/>
+    <remap from="/joint_states" to="/robot_platform_control/joint_states"/>
   </node>
 
   <rosparam file="$(find platform_controller)/config/robot_control.yaml" command="load"/>

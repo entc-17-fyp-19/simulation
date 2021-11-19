@@ -4,7 +4,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <tf2/LinearMath/Quaternion.h>
-#include <tf2_ros/transform_broadcaster.h>
+#include <tf/transform_broadcaster.h>
 #include <cmath>
 
 
@@ -13,13 +13,16 @@ ros::Publisher odom_data_pub_quat;
 nav_msgs::Odometry odomNew;
 nav_msgs::Odometry odomOld;
 
+geometry_msgs::Quaternion odom_quat;
+geometry_msgs::TransformStamped odom_trans;
+
 
 const double initialX = 0.0;
 const double initialY = 0.0;
 const double initialTheta = 0.0;
 const double PI = 3.1415926535897932;
 
-const double WHEEL_RADIUS = 0.5;
+const double WHEEL_RADIUS = 0.16;
 const double WHEEL_BASE = 0.5;
 
 double distanceLeft = 0;
@@ -44,6 +47,8 @@ void joint_data_callback(const sensor_msgs::JointState& msg){
 }
 
 void update_odom(){
+  static tf::TransformBroadcaster odom_broadcaster;
+
   double cycleDistance = (distanceRight + distanceLeft)/2;
   double cycleAngle = ((distanceRight - distanceLeft)/WHEEL_BASE);
 
@@ -86,6 +91,18 @@ void update_odom(){
   odomOld.pose.pose.orientation.z = odomNew.pose.pose.orientation.z;
   odomOld.header.stamp = odomNew.header.stamp;
 
+
+  // set TF Data
+  odom_quat = tf::createQuaternionMsgFromYaw(avgAngle);
+  odom_trans.header.stamp = odomNew.header.stamp;
+  odom_trans.header.frame_id = "odom";
+  odom_trans.child_frame_id = "base_footprint";
+  odom_trans.transform.translation.x = odomNew.pose.pose.position.x;
+  odom_trans.transform.translation.y = odomNew.pose.pose.position.y;
+  odom_trans.transform.translation.z = 0.0;
+  odom_trans.transform.rotation = odom_quat;
+
+  odom_broadcaster.sendTransform(odom_trans);
   odom_data_pub.publish(odomNew);
 
 }

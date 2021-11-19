@@ -473,4 +473,28 @@
     </actuator>
   </transmission>
 
+  <!--For caster wheels; not for physical robot; only for simulation -->
+
+  <transmission name="front_RW_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_RW_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_RW_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="front_LW_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_LW_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_LW_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
 </robot>

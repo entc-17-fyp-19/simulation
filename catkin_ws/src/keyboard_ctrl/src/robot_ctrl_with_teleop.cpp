@@ -22,6 +22,7 @@ int main(int argc, char **argv)
   ros::Publisher pub_back_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/back_RW_joint_velocity_controller/command", 100);
   ros::Publisher pub_front_LW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_LW_con_joint_position_controller/command", 100);
   ros::Publisher pub_front_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_RW_con_joint_position_controller/command", 100);
+  
   ros::Rate rate(50);
 
   while (ros::ok())

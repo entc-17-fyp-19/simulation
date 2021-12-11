@@ -54,8 +54,10 @@ CMAKE_BINARY_DIR = /home/tharaka/ROS/fyp/catkin_ws/build
 
 # The main recursive "all" target.
 all: gtest/all
+all: map_data/all
 all: fyp_sim/all
 all: keyboard_ctrl/all
+all: rotate_base/all
 all: odometry/all
 all: platform_controller/all
 
@@ -63,8 +65,10 @@ all: platform_controller/all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
+preinstall: map_data/preinstall
 preinstall: fyp_sim/preinstall
 preinstall: keyboard_ctrl/preinstall
+preinstall: rotate_base/preinstall
 preinstall: odometry/preinstall
 preinstall: platform_controller/preinstall
 
@@ -77,8 +81,10 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
+clean: map_data/clean
 clean: fyp_sim/clean
 clean: keyboard_ctrl/clean
+clean: rotate_base/clean
 clean: odometry/clean
 clean: platform_controller/clean
 
@@ -98,7 +104,7 @@ fyp_sim/preinstall:
 .PHONY : fyp_sim/preinstall
 
 # Recursive "clean" directory target.
-fyp_sim/clean: fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/clean
+fyp_sim/clean:
 
 .PHONY : fyp_sim/clean
 
@@ -208,6 +214,24 @@ keyboard_ctrl/clean: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_no
 .PHONY : keyboard_ctrl/clean
 
 #=============================================================================
+# Directory level rules for directory map_data
+
+# Recursive "all" directory target.
+map_data/all:
+
+.PHONY : map_data/all
+
+# Recursive "preinstall" directory target.
+map_data/preinstall:
+
+.PHONY : map_data/preinstall
+
+# Recursive "clean" directory target.
+map_data/clean: map_data/CMakeFiles/_catkin_empty_exported_target.dir/clean
+
+.PHONY : map_data/clean
+
+#=============================================================================
 # Directory level rules for directory odometry
 
 # Recursive "all" directory target.
@@ -262,6 +286,24 @@ platform_controller/preinstall:
 platform_controller/clean:
 
 .PHONY : platform_controller/clean
+
+#=============================================================================
+# Directory level rules for directory rotate_base
+
+# Recursive "all" directory target.
+rotate_base/all: rotate_base/CMakeFiles/rotate_base_node.dir/all
+
+.PHONY : rotate_base/all
+
+# Recursive "preinstall" directory target.
+rotate_base/preinstall:
+
+.PHONY : rotate_base/preinstall
+
+# Recursive "clean" directory target.
+rotate_base/clean: rotate_base/CMakeFiles/rotate_base_node.dir/clean
+
+.PHONY : rotate_base/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/doxygen.dir
@@ -508,36 +550,48 @@ gtest/googletest/CMakeFiles/gtest.dir/clean:
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
 
 #=============================================================================
-# Target rules for target fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir
+# Target rules for target map_data/CMakeFiles/_catkin_empty_exported_target.dir
 
 # All Build rule for target.
-fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/all:
-	$(MAKE) -f fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build.make fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/depend
-	$(MAKE) -f fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build.make fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build
+map_data/CMakeFiles/_catkin_empty_exported_target.dir/all:
+	$(MAKE) -f map_data/CMakeFiles/_catkin_empty_exported_target.dir/build.make map_data/CMakeFiles/_catkin_empty_exported_target.dir/depend
+	$(MAKE) -f map_data/CMakeFiles/_catkin_empty_exported_target.dir/build.make map_data/CMakeFiles/_catkin_empty_exported_target.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num= "Built target _catkin_empty_exported_target"
-.PHONY : fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/all
+.PHONY : map_data/CMakeFiles/_catkin_empty_exported_target.dir/all
 
 # Build rule for subdir invocation for target.
-fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/rule: cmake_check_build_system
+map_data/CMakeFiles/_catkin_empty_exported_target.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 map_data/CMakeFiles/_catkin_empty_exported_target.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 0
-.PHONY : fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/rule
+.PHONY : map_data/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 # Convenience name for target.
-_catkin_empty_exported_target: fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/rule
+_catkin_empty_exported_target: map_data/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 .PHONY : _catkin_empty_exported_target
 
 # clean rule for target.
-fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	$(MAKE) -f fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build.make fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/clean
-.PHONY : fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/clean
+map_data/CMakeFiles/_catkin_empty_exported_target.dir/clean:
+	$(MAKE) -f map_data/CMakeFiles/_catkin_empty_exported_target.dir/build.make map_data/CMakeFiles/_catkin_empty_exported_target.dir/clean
+.PHONY : map_data/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 #=============================================================================
 # Target rules for target keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir
 
 # All Build rule for target.
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: map_data/CMakeFiles/_catkin_empty_exported_target.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/all
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
@@ -557,18 +611,6 @@ keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/na
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/actionlib_msgs_generate_messages_py.dir/all
 keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 	$(MAKE) -f keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/build.make keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/depend
 	$(MAKE) -f keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/build.make keyboard_ctrl/CMakeFiles/keyboard_ctrl_node.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=9,10 "Built target keyboard_ctrl_node"
@@ -1402,9 +1444,62 @@ keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
 .PHONY : keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
+# Target rules for target rotate_base/CMakeFiles/rotate_base_node.dir
+
+# All Build rule for target.
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_py.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_py.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/depend
+	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=13,14 "Built target rotate_base_node"
+.PHONY : rotate_base/CMakeFiles/rotate_base_node.dir/all
+
+# Build rule for subdir invocation for target.
+rotate_base/CMakeFiles/rotate_base_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 rotate_base/CMakeFiles/rotate_base_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 0
+.PHONY : rotate_base/CMakeFiles/rotate_base_node.dir/rule
+
+# Convenience name for target.
+rotate_base_node: rotate_base/CMakeFiles/rotate_base_node.dir/rule
+
+.PHONY : rotate_base_node
+
+# clean rule for target.
+rotate_base/CMakeFiles/rotate_base_node.dir/clean:
+	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/clean
+.PHONY : rotate_base/CMakeFiles/rotate_base_node.dir/clean
+
+#=============================================================================
 # Target rules for target odometry/CMakeFiles/odom_data_pub.dir
 
 # All Build rule for target.
+odometry/CMakeFiles/odom_data_pub.dir/all: map_data/CMakeFiles/_catkin_empty_exported_target.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/nav_msgs_generate_messages_py.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/nav_msgs_generate_messages_lisp.dir/all
@@ -1433,18 +1528,6 @@ odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/actionlib_generat
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/actionlib_generate_messages_lisp.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/sensor_msgs_generate_messages_eus.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
-odometry/CMakeFiles/odom_data_pub.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/tf2_msgs_generate_messages_py.dir/all
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/all

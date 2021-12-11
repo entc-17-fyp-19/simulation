@@ -18,12 +18,12 @@ robot_platform_control:
   front_LW_con_joint_position_controller:
     type: effort_controllers/JointPositionController
     joint: front_LW_con_joint
-    pid: {p: 1, i: 0, d: 0}
+    pid: {p: 0.3, i: 0, d: 0.05}
 
   front_RW_con_joint_position_controller:
     type: effort_controllers/JointPositionController
     joint: front_RW_con_joint
-    pid: {p: 1, i: 0, d: 0}
+    pid: {p: 0.3, i: 0, d: 0.05}
 
   front_RW_joint_position_controller:
     type: effort_controllers/JointVelocityController

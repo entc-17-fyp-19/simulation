@@ -1,0 +1,8 @@
+prefix=/home/tharaka/ROS/fyp/catkin_ws/devel
+
+Name: rotate_base
+Description: Description of rotate_base
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

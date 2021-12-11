@@ -2,13 +2,15 @@
 <launch>
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find fyp_sim)/urdf/robot.xacro'"/>
-  <arg name="x" default="1"/>
-  <arg name="y" default="1"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
   <arg name="z" default="1"/>
+  <arg name="Y" default="0"/>
+  <!-- -1.5708 -->
 
 
   <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output = "screen"
-        args = "-urdf -param robot_description -model robot_platform_urdf -x $(arg x) -y $(arg y) -z $(arg z)"/>
+        args = "-urdf -param robot_description -model robot_platform_urdf -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg Y)"/>
 
 
   <!-- send fake joint values -->
@@ -38,6 +40,7 @@
     />
 
   <node name="odom_pub" pkg="odometry" type="odom_data_pub"/>
+  <node name="rotate_angle_pub" pkg="rotate_base" type="rotate_base_node"/>
   <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
   <node name="teleop_ctrl" pkg="keyboard_ctrl" type="keyboard_ctrl_node"/>
   <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom 30"/>

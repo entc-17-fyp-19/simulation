@@ -42,7 +42,7 @@
     <collision name="chassis_collision">>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 0 ${-pi/2}" />
       <geometry>
         <mesh
           filename="package://fyp_sim/meshes/chassis.stl" scale="0.01 0.01 0.01" />
@@ -340,7 +340,7 @@
   <joint name="base_joint" type="fixed">
     <origin
       xyz="0 0 0.22987"
-      rpy="0 0 0" />
+      rpy="0 0 ${-pi}" />
     <parent
       link="base_footprint" />
     <child
@@ -375,7 +375,7 @@
 
   <joint name="front_LW_con_joint"
     type="revolute">
-    <limit effort="30" velocity="${pi}" lower="${-pi/3}" upper="${pi/3}"/>
+    <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/>
     <origin
       xyz="-0.35409 -0.22 0.02013"
       rpy="0 0 ${pi/2}" />
@@ -389,7 +389,7 @@
 
   <joint name="front_RW_con_joint"
     type="revolute">
-    <limit effort="30" velocity="${pi}" lower="${-pi/3}" upper="${pi/3}"/>
+    <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/>
     <origin
       xyz="-0.35409 0.22 0.02013"
       rpy="0 0 ${pi/2}" />

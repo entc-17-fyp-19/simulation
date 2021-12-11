@@ -294,7 +294,7 @@ _catkin_empty_exported_target: cmake_check_build_system
 
 # fast build rule for target.
 _catkin_empty_exported_target/fast:
-	$(MAKE) -f fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build.make fyp_sim/CMakeFiles/_catkin_empty_exported_target.dir/build
+	$(MAKE) -f map_data/CMakeFiles/_catkin_empty_exported_target.dir/build.make map_data/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
 
 #=============================================================================
@@ -701,6 +701,19 @@ rosgraph_msgs_generate_messages_nodejs/fast:
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named rotate_base_node
+
+# Build rule for target.
+rotate_base_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rotate_base_node
+.PHONY : rotate_base_node
+
+# fast build rule for target.
+rotate_base_node/fast:
+	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/build
+.PHONY : rotate_base_node/fast
+
+#=============================================================================
 # Target rules for targets named odom_data_pub
 
 # Build rule for target.
@@ -1027,6 +1040,7 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... rotate_base_node"
 	@echo "... odom_data_pub"
 	@echo "... tf_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"

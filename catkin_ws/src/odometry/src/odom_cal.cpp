@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Int16.h"
+#include "std_msgs/Float64.h"
 #include "sensor_msgs/JointState.h"
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -24,11 +25,19 @@ const double PI = 3.1415926535897932;
 
 const double WHEEL_RADIUS = 0.16;
 const double WHEEL_BASE = 0.5;
+const double FRONT_LEN = 0.59;
 
 double distanceLeft = 0;
 double distanceRight = 0;
+double steer_angle = 0;
+double total_rotation_angle = 0;
 
 using namespace std;
+
+void rotate_angle_callback(const std_msgs::Float64& msg)
+{
+  steer_angle = msg.data;
+}
 
 void joint_data_callback(const sensor_msgs::JointState& msg){
   static double last_left_radians = 0;
@@ -51,8 +60,9 @@ void update_odom(){
 
   double cycleDistance = (distanceRight + distanceLeft)/2;
   double cycleAngle = ((distanceRight - distanceLeft)/WHEEL_BASE);
-
   double avgAngle = cycleAngle/2 + odomOld.pose.pose.orientation.z;
+
+  total_rotation_angle += cycleAngle;
 
   if(avgAngle > PI){
     avgAngle -= 2*PI;
@@ -62,7 +72,7 @@ void update_odom(){
 
   //new pose Data
   odomNew.pose.pose.position.x = odomOld.pose.pose.position.x + cycleDistance * cos(avgAngle);
-  odomNew.pose.pose.position.y = odomOld.pose.pose.position.y + cycleDistance * cos(avgAngle);
+  odomNew.pose.pose.position.y = odomOld.pose.pose.position.y + cycleDistance * sin(avgAngle);
   odomNew.pose.pose.orientation.z = odomOld.pose.pose.orientation.z + cycleAngle;
 
   if(
@@ -83,8 +93,17 @@ void update_odom(){
 
   // velocity calculation
   odomNew.header.stamp = ros::Time::now();
-  odomNew.twist.twist.linear.x = cycleDistance/(odomNew.header.stamp.toSec() - odomOld.header.stamp.toSec());
-  odomNew.twist.twist.angular.z =  cycleAngle/(odomNew.header.stamp.toSec() - odomOld.header.stamp.toSec());
+  double velocity = 0;
+  if (odomNew.header.stamp.toSec() == odomOld.header.stamp.toSec()){
+    velocity = 0;
+  }else{
+    velocity = (cycleDistance/(odomNew.header.stamp.toSec() - odomOld.header.stamp.toSec()));
+  }
+
+  odomNew.twist.twist.linear.x = velocity*cos(total_rotation_angle);
+  odomNew.twist.twist.linear.y = velocity*sin(total_rotation_angle);
+  // odomNew.twist.twist.angular.z =  cycleAngle/(odomNew.header.stamp.toSec() - odomOld.header.stamp.toSec());
+  odomNew.twist.twist.angular.z = (velocity/FRONT_LEN)*tan(steer_angle);
 
   odomOld.pose.pose.position.x = odomNew.pose.pose.position.x;
   odomOld.pose.pose.position.y = odomNew.pose.pose.position.y;
@@ -128,7 +147,7 @@ int main(int argc, char **argv)
   ros::NodeHandle node;
 
   ros::Subscriber joint_data = node.subscribe("/robot_platform_control/joint_states", 100, joint_data_callback);
-
+  ros::Subscriber sub = node.subscribe("/rotate_angle", 100, rotate_angle_callback);
   odom_data_pub = node.advertise<nav_msgs::Odometry>("odom", 100);
 
   ros::Rate loop_rate(30);

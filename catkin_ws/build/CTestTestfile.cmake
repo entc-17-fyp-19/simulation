@@ -5,7 +5,9 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("map_data")
 subdirs("fyp_sim")
 subdirs("keyboard_ctrl")
+subdirs("rotate_base")
 subdirs("odometry")
 subdirs("platform_controller")

@@ -30,7 +30,7 @@
 
   <node name="controller_manager" pkg="controller_manager" type="spawner"
         respawn="true" output="screen" ns="/robot_platform_control"
-        args="back_LW_joint_velocity_controller back_RW_joint_velocity_controller front_LW_con_joint_position_controller front_RW_con_joint_position_controller joint_state_controller"/>
+        args="back_LW_joint_velocity_controller back_RW_joint_velocity_controller joint_state_controller"/>
 
   <node
     name="rviz"
@@ -40,6 +40,7 @@
     />
 
   <node name="odom_pub" pkg="odometry" type="odom_data_pub"/>
+  <!-- <node name="navigate" pkg="navigation" type="navigate"/> -->
   <node name="rotate_angle_pub" pkg="rotate_base" type="rotate_base_node"/>
   <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
   <node name="teleop_ctrl" pkg="keyboard_ctrl" type="keyboard_ctrl_node"/>

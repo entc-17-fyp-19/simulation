@@ -135,6 +135,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/tharaka/ROS/fyp/catkin_ws/build/fyp_sim/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/keyboard_ctrl/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/rotate_base/cmake_install.cmake")
+  include("/home/tharaka/ROS/fyp/catkin_ws/build/movebase/cmake_install.cmake")
+  include("/home/tharaka/ROS/fyp/catkin_ws/build/navigation/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/odometry/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/platform_controller/cmake_install.cmake")
 

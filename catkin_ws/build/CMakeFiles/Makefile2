@@ -58,6 +58,8 @@ all: map_data/all
 all: fyp_sim/all
 all: keyboard_ctrl/all
 all: rotate_base/all
+all: movebase/all
+all: navigation/all
 all: odometry/all
 all: platform_controller/all
 
@@ -69,6 +71,8 @@ preinstall: map_data/preinstall
 preinstall: fyp_sim/preinstall
 preinstall: keyboard_ctrl/preinstall
 preinstall: rotate_base/preinstall
+preinstall: movebase/preinstall
+preinstall: navigation/preinstall
 preinstall: odometry/preinstall
 preinstall: platform_controller/preinstall
 
@@ -85,6 +89,8 @@ clean: map_data/clean
 clean: fyp_sim/clean
 clean: keyboard_ctrl/clean
 clean: rotate_base/clean
+clean: movebase/clean
+clean: navigation/clean
 clean: odometry/clean
 clean: platform_controller/clean
 
@@ -230,6 +236,42 @@ map_data/preinstall:
 map_data/clean: map_data/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 .PHONY : map_data/clean
+
+#=============================================================================
+# Directory level rules for directory movebase
+
+# Recursive "all" directory target.
+movebase/all: movebase/CMakeFiles/movebase.dir/all
+
+.PHONY : movebase/all
+
+# Recursive "preinstall" directory target.
+movebase/preinstall:
+
+.PHONY : movebase/preinstall
+
+# Recursive "clean" directory target.
+movebase/clean: movebase/CMakeFiles/movebase.dir/clean
+
+.PHONY : movebase/clean
+
+#=============================================================================
+# Directory level rules for directory navigation
+
+# Recursive "all" directory target.
+navigation/all: navigation/CMakeFiles/navigate.dir/all
+
+.PHONY : navigation/all
+
+# Recursive "preinstall" directory target.
+navigation/preinstall:
+
+.PHONY : navigation/preinstall
+
+# Recursive "clean" directory target.
+navigation/clean: navigation/CMakeFiles/navigate.dir/clean
+
+.PHONY : navigation/clean
 
 #=============================================================================
 # Directory level rules for directory odometry
@@ -1464,7 +1506,7 @@ rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgra
 rotate_base/CMakeFiles/rotate_base_node.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
 	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/depend
 	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=13,14 "Built target rotate_base_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=17,18 "Built target rotate_base_node"
 .PHONY : rotate_base/CMakeFiles/rotate_base_node.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1483,6 +1525,88 @@ rotate_base_node: rotate_base/CMakeFiles/rotate_base_node.dir/rule
 rotate_base/CMakeFiles/rotate_base_node.dir/clean:
 	$(MAKE) -f rotate_base/CMakeFiles/rotate_base_node.dir/build.make rotate_base/CMakeFiles/rotate_base_node.dir/clean
 .PHONY : rotate_base/CMakeFiles/rotate_base_node.dir/clean
+
+#=============================================================================
+# Target rules for target movebase/CMakeFiles/movebase.dir
+
+# All Build rule for target.
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_py.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_py.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+movebase/CMakeFiles/movebase.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f movebase/CMakeFiles/movebase.dir/build.make movebase/CMakeFiles/movebase.dir/depend
+	$(MAKE) -f movebase/CMakeFiles/movebase.dir/build.make movebase/CMakeFiles/movebase.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=11,12 "Built target movebase"
+.PHONY : movebase/CMakeFiles/movebase.dir/all
+
+# Build rule for subdir invocation for target.
+movebase/CMakeFiles/movebase.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 movebase/CMakeFiles/movebase.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 0
+.PHONY : movebase/CMakeFiles/movebase.dir/rule
+
+# Convenience name for target.
+movebase: movebase/CMakeFiles/movebase.dir/rule
+
+.PHONY : movebase
+
+# clean rule for target.
+movebase/CMakeFiles/movebase.dir/clean:
+	$(MAKE) -f movebase/CMakeFiles/movebase.dir/build.make movebase/CMakeFiles/movebase.dir/clean
+.PHONY : movebase/CMakeFiles/movebase.dir/clean
+
+#=============================================================================
+# Target rules for target navigation/CMakeFiles/navigate.dir
+
+# All Build rule for target.
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_eus.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_nodejs.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_lisp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_cpp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/std_msgs_generate_messages_py.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_eus.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/roscpp_generate_messages_py.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/all
+navigation/CMakeFiles/navigate.dir/all: keyboard_ctrl/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all
+	$(MAKE) -f navigation/CMakeFiles/navigate.dir/build.make navigation/CMakeFiles/navigate.dir/depend
+	$(MAKE) -f navigation/CMakeFiles/navigate.dir/build.make navigation/CMakeFiles/navigate.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=13,14 "Built target navigate"
+.PHONY : navigation/CMakeFiles/navigate.dir/all
+
+# Build rule for subdir invocation for target.
+navigation/CMakeFiles/navigate.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 navigation/CMakeFiles/navigate.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles 0
+.PHONY : navigation/CMakeFiles/navigate.dir/rule
+
+# Convenience name for target.
+navigate: navigation/CMakeFiles/navigate.dir/rule
+
+.PHONY : navigate
+
+# clean rule for target.
+navigation/CMakeFiles/navigate.dir/clean:
+	$(MAKE) -f navigation/CMakeFiles/navigate.dir/build.make navigation/CMakeFiles/navigate.dir/clean
+.PHONY : navigation/CMakeFiles/navigate.dir/clean
 
 #=============================================================================
 # Target rules for target odometry/CMakeFiles/odom_data_pub.dir
@@ -1541,7 +1665,7 @@ odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/tf2_msgs_generate
 odometry/CMakeFiles/odom_data_pub.dir/all: odometry/CMakeFiles/actionlib_generate_messages_eus.dir/all
 	$(MAKE) -f odometry/CMakeFiles/odom_data_pub.dir/build.make odometry/CMakeFiles/odom_data_pub.dir/depend
 	$(MAKE) -f odometry/CMakeFiles/odom_data_pub.dir/build.make odometry/CMakeFiles/odom_data_pub.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=11,12 "Built target odom_data_pub"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/tharaka/ROS/fyp/catkin_ws/build/CMakeFiles --progress-num=15,16 "Built target odom_data_pub"
 .PHONY : odometry/CMakeFiles/odom_data_pub.dir/all
 
 # Build rule for subdir invocation for target.

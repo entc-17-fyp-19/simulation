@@ -714,6 +714,32 @@ rotate_base_node/fast:
 .PHONY : rotate_base_node/fast
 
 #=============================================================================
+# Target rules for targets named movebase
+
+# Build rule for target.
+movebase: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 movebase
+.PHONY : movebase
+
+# fast build rule for target.
+movebase/fast:
+	$(MAKE) -f movebase/CMakeFiles/movebase.dir/build.make movebase/CMakeFiles/movebase.dir/build
+.PHONY : movebase/fast
+
+#=============================================================================
+# Target rules for targets named navigate
+
+# Build rule for target.
+navigate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 navigate
+.PHONY : navigate
+
+# fast build rule for target.
+navigate/fast:
+	$(MAKE) -f navigation/CMakeFiles/navigate.dir/build.make navigation/CMakeFiles/navigate.dir/build
+.PHONY : navigate/fast
+
+#=============================================================================
 # Target rules for targets named odom_data_pub
 
 # Build rule for target.
@@ -1041,6 +1067,8 @@ help:
 	@echo "... actionlib_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... rotate_base_node"
+	@echo "... movebase"
+	@echo "... navigate"
 	@echo "... odom_data_pub"
 	@echo "... tf_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"

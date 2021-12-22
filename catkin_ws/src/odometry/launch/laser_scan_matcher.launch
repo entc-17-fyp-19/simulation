@@ -1,0 +1,15 @@
+<launch>
+
+    <!-- Run the EKF Localization node -->
+    <param name="/use_sim_time" value="false"/>
+    <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher" output="screen">
+        <param name="fixed_frame" type="string" value="world"/>
+        <param name="base_frame" type="string" value="base_footprint"/>
+        <param name="use_odom" value="false"/>
+        <param name="publish_tf" value="false"/>
+
+        <remap from="/imu/data" to="/imu" />
+        <remap from="/scan" to="/laser/scan" />
+    </node>
+
+</launch>

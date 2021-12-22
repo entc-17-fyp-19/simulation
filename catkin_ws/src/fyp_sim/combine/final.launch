@@ -1,11 +1,13 @@
 <?xml version="1.0"  encoding="UTF-8"?>
 <launch>
 
-  <include file="$(find fyp_sim)/launch/world.launch"/>
+  <!-- <include file="$(find fyp_sim)/launch/empty_world.launch"/> -->
+  <include file="$(find fyp_sim)/launch/field.launch"/>
   <include file="$(find fyp_sim)/launch/gazebo.launch"/>
 
   <include file="$(find odometry)/launch/ekf_localization.launch"/>
   <include file="$(find odometry)/launch/navsat_transform.launch" />
+  <!-- <include file="$(find odometry)/launch/laser_scan_matcher.launch" /> -->
   <include file="$(find map_data)/launch/map_server.launch" />
 
 </launch>

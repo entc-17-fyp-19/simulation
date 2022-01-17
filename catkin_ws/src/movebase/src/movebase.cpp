@@ -80,8 +80,8 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   ros::Subscriber ctrl_base_sub = n.subscribe("/ctrl", 100, ctrl_base_callback);
-  ros::Publisher pub_back_LW = n.advertise<std_msgs::Float64>("/robot_platform_control/back_LW_joint_velocity_controller/command", 100);
-  ros::Publisher pub_back_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/back_RW_joint_velocity_controller/command", 100);
+  ros::Publisher pub_front_LW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_LW_joint_velocity_controller/command", 100);
+  ros::Publisher pub_front_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_RW_joint_velocity_controller/command", 100);
 
   ros::Rate rate(100);
 
@@ -95,8 +95,8 @@ int main(int argc, char **argv)
     left_msg.data = left_motor_speed;
     right_msg.data = right_motor_speed;
 
-    pub_back_LW.publish(left_msg);
-    pub_back_RW.publish(right_msg);
+    pub_front_LW.publish(left_msg);
+    pub_front_RW.publish(right_msg);
 
     ros::spinOnce();
 

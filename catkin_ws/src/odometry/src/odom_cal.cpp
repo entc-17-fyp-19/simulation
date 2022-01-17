@@ -43,14 +43,14 @@ void joint_data_callback(const sensor_msgs::JointState& msg){
   static double last_left_radians = 0;
   static double last_right_radians = 0;
 
-  double left_radians = msg.position[0] - last_left_radians;
-  double right_radians = msg.position[1] - last_right_radians;
+  double left_radians = msg.position[4] - last_left_radians;
+  double right_radians = msg.position[5] - last_right_radians;
 
   distanceLeft = WHEEL_RADIUS * left_radians;
   distanceRight = WHEEL_RADIUS * right_radians;
 
-  last_left_radians = msg.position[0];
-  last_right_radians = msg.position[1];
+  last_left_radians = msg.position[4];
+  last_right_radians = msg.position[5];
   // ROS_INFO_STREAM("last_left_radians" << last_left_radians);
   // ROS_INFO_STREAM("last_right_radians" << last_right_radians);
 }

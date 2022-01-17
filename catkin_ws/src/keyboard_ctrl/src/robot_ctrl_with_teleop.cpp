@@ -60,18 +60,18 @@ int main(int argc, char **argv)
 
   ros::Subscriber sub_vel = n.subscribe("/cmd_vel", 100, cmd_vel_callback);
   ros::Subscriber sub_angle = n.subscribe("/rotate_angle", 100, rotate_angle_callback);
-  ros::Publisher pub_back_LW = n.advertise<std_msgs::Float64>("/robot_platform_control/back_LW_joint_velocity_controller/command", 100);
-  ros::Publisher pub_back_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/back_RW_joint_velocity_controller/command", 100);
-  ros::Publisher pub_front_LW_con = n.advertise<std_msgs::Float64>("/robot_platform_control/front_LW_con_joint_position_controller/command", 100);
-  ros::Publisher pub_front_RW_con = n.advertise<std_msgs::Float64>("/robot_platform_control/front_RW_con_joint_position_controller/command", 100);
+  ros::Publisher pub_front_LW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_LW_joint_velocity_controller/command", 100);
+  ros::Publisher pub_front_RW = n.advertise<std_msgs::Float64>("/robot_platform_control/front_RW_joint_velocity_controller/command", 100);
+  // ros::Publisher pub_front_LW_con = n.advertise<std_msgs::Float64>("/robot_platform_control/front_LW_con_joint_position_controller/command", 100);
+  // ros::Publisher pub_front_RW_con = n.advertise<std_msgs::Float64>("/robot_platform_control/front_RW_con_joint_position_controller/command", 100);
 
   ros::Rate rate(50);
 
   // inital pub
-  std_msgs::Float64 zero;
-  zero.data = 0;
-  pub_front_LW_con.publish(zero);
-  pub_front_RW_con.publish(zero);
+  // std_msgs::Float64 zero;
+  // zero.data = 0;
+  // pub_front_LW_con.publish(zero);
+  // pub_front_RW_con.publish(zero);
 
   while (ros::ok())
   {
@@ -83,8 +83,8 @@ int main(int argc, char **argv)
     left_msg.data = left_motor_speed;
     right_msg.data = right_motor_speed;
 
-    pub_back_LW.publish(left_msg);
-    pub_back_RW.publish(right_msg);
+    pub_front_LW.publish(left_msg);
+    pub_front_RW.publish(right_msg);
 
     ros::spinOnce();
 

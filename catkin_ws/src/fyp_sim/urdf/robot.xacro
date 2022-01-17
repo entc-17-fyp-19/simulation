@@ -51,7 +51,7 @@
   </link>
 
   <!-- back wheel left -->
-  <link name="back_wheel_left">
+  <link name="front_wheel_right">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -102,7 +102,7 @@
   </link>
 
   <!-- back wheel right -->
-  <link name="back_wheel_right">
+  <link name="front_wheel_left">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -154,7 +154,7 @@
 
 
   <!-- front wheel left connector -->
-  <link name="front_wheel_left_connector">
+  <link name="back_wheel_right_connector">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -195,7 +195,7 @@
   </link>
 
   <!-- front wheel left connector bar -->
-  <link name="front_wheel_left_bar">
+  <link name="back_wheel_right_bar">
     <inertial>
       <origin
         xyz="-0.03 0 0"
@@ -234,7 +234,7 @@
   </link>
 
   <!-- front wheel right connector bar -->
-  <link name="front_wheel_right_bar">
+  <link name="back_wheel_left_bar">
     <inertial>
       <origin
         xyz="-0.03 0 0"
@@ -273,7 +273,7 @@
   </link>
 
   <!-- front wheel right connector -->
-  <link name="front_wheel_right_connector">
+  <link name="back_wheel_left_connector">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -314,7 +314,7 @@
   </link>
 
   <!-- front wheel right -->
-  <link name="front_wheel_right">
+  <link name="back_wheel_left">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -365,7 +365,7 @@
   </link>
 
   <!-- front wheel left -->
-  <link name="front_wheel_left">
+  <link name="back_wheel_right">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -415,7 +415,7 @@
     </collision>
   </link>
 
-  <link name="lidar">
+  <!-- <link name="lidar">
     <inertial>
       <origin
         xyz="0 0 0"
@@ -452,23 +452,21 @@
           <cylinder radius="0.04" length="0.04"/>
         </geometry>
     </collision>
-  </link>
+  </link> -->
 
 
   <joint name="base_joint" type="fixed">
     <origin
       xyz="0 0 0.22987"
-      rpy="0 0 ${pi}" />
-      <!-- <origin
-        xyz="0 0 0.22987"
-        rpy="0 0 0" /> -->
+      rpy="0 0 0" />
+
     <parent
       link="base_footprint" />
     <child
       link="chassis" />
   </joint>
 
-  <joint name="lidar_joint" type="fixed">
+  <!-- <joint name="lidar_joint" type="fixed">
     <origin
       xyz="-0.29 0 0.29"
       rpy="0 0 0" />
@@ -476,9 +474,9 @@
       link="chassis" />
     <child
       link="lidar" />
-  </joint>
+  </joint> -->
 
-  <joint name="back_LW_joint"
+  <joint name="front_RW_joint"
     type="continuous">
     <origin
       xyz="0.23591 -0.245 -0.06987"
@@ -486,13 +484,13 @@
     <parent
       link="chassis" />
     <child
-      link="back_wheel_left" />
+      link="front_wheel_right" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
       <dynamics friction="0.3"/>
   </joint>
 
-  <joint name="back_RW_joint"
+  <joint name="front_LW_joint"
     type="continuous">
     <origin
       xyz="0.23591 0.245 -0.06987"
@@ -500,138 +498,138 @@
     <parent
       link="chassis" />
     <child
-      link="back_wheel_right" />
+      link="front_wheel_left" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
       <dynamics friction="0.3"/>
   </joint>
 
-  <joint name="front_wheel_left_bar_joint"
+  <joint name="back_wheel_right_bar_joint"
     type="continuous">
     <!-- <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/> -->
     <origin
       xyz="-0.35409 -0.22 -0.03"
-      rpy="0 0 ${pi}" />
+      rpy="0 0 0" />
     <parent
       link="chassis" />
     <child
-      link="front_wheel_left_bar" />
+      link="back_wheel_right_bar" />
     <axis
       xyz="0 0 1" />
       <dynamics friction="0.2"/>
   </joint>
 
-  <joint name="front_LW_con_joint"
+  <joint name="back_RW_con_joint"
     type="fixed">
     <!-- <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/> -->
     <origin
       xyz="-0.06 0 0.03513"
       rpy="0 0 ${pi/2}" />
     <parent
-      link="front_wheel_left_bar" />
+      link="back_wheel_right_bar" />
     <child
-      link="front_wheel_left_connector" />
+      link="back_wheel_right_connector" />
       <!-- front_wheel_left_bar -->
     <axis
       xyz="0 0 1" />
   </joint>
 
-  <joint name="front_wheel_right_bar_joint"
+  <joint name="back_wheel_left_bar_joint"
     type="continuous">
     <!-- <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/> -->
     <origin
       xyz="-0.35409 0.22 -0.03"
-      rpy="0 0 ${pi}" />
+      rpy="0 0 0" />
     <parent
       link="chassis" />
     <child
-      link="front_wheel_right_bar" />
+      link="back_wheel_left_bar" />
     <axis
       xyz="0 0 1" />
       <dynamics friction="0.2"/>
   </joint>
 
-  <joint name="front_RW_con_joint"
+  <joint name="back_LW_con_joint"
     type="fixed">
     <!-- <limit effort="30" velocity="${pi/3}" lower="${-pi/2}" upper="${pi/2}"/> -->
     <origin
       xyz="-0.06 0 0.03513"
       rpy="0 0 ${pi/2}" />
     <parent
-      link="front_wheel_right_bar" />
+      link="back_wheel_left_bar" />
     <child
-      link="front_wheel_right_connector" />
+      link="back_wheel_left_connector" />
     <axis
       xyz="0 0 1" />
   </joint>
 
-  <joint name="front_RW_joint"
+  <joint name="back_LW_joint"
     type="continuous">
     <origin
       xyz="0 0 -0.15"
       rpy="0 ${pi/2} 0" />
     <parent
-      link="front_wheel_right_connector" />
+      link="back_wheel_left_connector" />
     <child
-      link="front_wheel_right" />
+      link="back_wheel_left" />
     <axis
       xyz="0 0 -1" />
   </joint>
 
 <!-- "-0.35409 -0.22 -0.13487" -->
 
-  <joint name="front_LW_joint"
+  <joint name="back_RW_joint"
     type="continuous">
     <origin
       xyz="0 0 -0.15"
       rpy="0 ${-pi/2} 0" />
     <parent
-      link="front_wheel_left_connector"/>
+      link="back_wheel_right_connector"/>
     <child
-      link="front_wheel_left" />
+      link="back_wheel_right" />
     <axis
       xyz="0 0 1" />
   </joint>
 
-  <transmission name="back_LW_transmission">
+  <transmission name="front_RW_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="back_LW_joint">
+    <joint name="front_RW_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="back_LW_motor">
+    <actuator name="front_RW_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
-  <transmission name="back_RW_transmission">
+  <transmission name="front_LW_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="back_RW_joint">
+    <joint name="front_LW_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="back_RW_motor">
+    <actuator name="front_LW_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>VelocityJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
-  <transmission name="front_wheel_right_bar_transmission">
+  <transmission name="back_wheel_left_bar_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="front_wheel_right_bar_joint">
+    <joint name="back_wheel_left_bar_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="front_wheel_right_bar_motor">
+    <actuator name="back_wheel_left_bar_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
-  <transmission name="front_wheel_left_bar_transmission">
+  <transmission name="back_wheel_right_bar_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="front_wheel_left_bar_joint">
+    <joint name="back_wheel_right_bar_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="front_wheel_left_bar_motor">
+    <actuator name="back_wheel_right_bar_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
@@ -639,23 +637,23 @@
 
   <!--For caster wheels; not for physical robot; only for simulation -->
 
-  <transmission name="front_RW_transmission">
+  <transmission name="back_LW_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="front_RW_joint">
+    <joint name="back_LW_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="front_RW_motor">
+    <actuator name="back_LW_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>
   </transmission>
 
-  <transmission name="front_LW_transmission">
+  <transmission name="back_RW_transmission">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="front_LW_joint">
+    <joint name="back_RW_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="front_LW_motor">
+    <actuator name="back_RW_motor">
       <mechanicalReduction>1</mechanicalReduction>
       <hardwareInterface>EffortJointInterface</hardwareInterface>
     </actuator>

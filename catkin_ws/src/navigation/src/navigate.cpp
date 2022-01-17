@@ -7,13 +7,14 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <nav_msgs/Odometry.h>
 #include <vector>
+#include <custom_msg/ctrl_base.h>
 
 float start_x = 0;
 float start_y = 0;
 float end_x = 5;
-float end_y = -10;
+float end_y = 10;
 
-std::vector<std::vector<int>> trajectory {{0, 0, 0}, {5, -10, 0}};
+std::vector<std::vector<int>> trajectory {{0, 0, 0}, {5, 10, 0}};
 
 float current_x = 0;
 float current_y = 0;
@@ -21,20 +22,31 @@ float current_y = 0;
 float perp_x = 0;
 float perp_y = 0;
 
-const float L1 = 0.5;
+const float L1 = 1.5;
 const double PI = 3.1415926535897932;
+const float THRESHOLD = 0.1;
 
-ros::Publisher arc_angle_data_pub;
+ros::Publisher ctrl_data_pub;
 ros::Publisher path_pub;
+ros::Publisher perp_pub;
+ros::Publisher endpt_pub;
 
 nav_msgs::Path path;
 geometry_msgs::PoseStamped pose;
+custom_msg::ctrl_base ctrl;
+
+nav_msgs::Path perp_path;
+geometry_msgs::PoseStamped perp_pose;
+
+nav_msgs::Path end_path;
+geometry_msgs::PoseStamped end_pose;
+
 nav_msgs::Odometry current_loc;
 
 double heading_angle = 0;
 
 float* calculate_path(){
-  static float data[2]; //{slope, intercept}
+  static float data[2]; //{slope(angle), intercept}
   float angle;
   if((end_x - start_x) < 0){
     angle = atan((end_y - start_y)/(end_x - start_x));
@@ -52,8 +64,9 @@ float* calculate_path(){
     }
   }
   data[0] = angle;
-  data[1] = start_y - start_x * data[0];
+  data[1] = start_y - start_x * tan(data[0]);
 
+  ROS_INFO_STREAM("angle - " << angle);
   return data;
 }
 
@@ -62,9 +75,10 @@ float* calculate_perp_loc(){
   float *path;
 
   path = calculate_path();
-  perp_loc[0] = (current_y + (current_x/(*path)) - *(path+1))/(*path + 1/(*path));
-  perp_loc[1] = current_y + (current_x/(*path)) - (current_y + (current_x/(*path)) - *(path+1))/(1 + pow(*path,2));
+  perp_loc[0] = (current_y + (current_x/tan(*path)) - *(path+1))/(tan(*path) + 1/tan(*path));
+  perp_loc[1] = current_y + (current_x/tan(*path)) - (current_y + (current_x/tan(*path)) - *(path+1))/(1 + pow(tan(*path),2));
 
+  ROS_INFO_STREAM("perpX - " << *perp_loc << "perpY - " << *(perp_loc+1));
   return perp_loc;
 }
 
@@ -82,6 +96,7 @@ float* calculate_end_point(){
   end_point[0] = *perp_point + len * cos(*path);
   end_point[1] = *(perp_point+1) + len * sin(*path);
 
+  ROS_INFO_STREAM("end_pointX - " << *end_point << "end_pointY - " << *(end_point+1));
   return end_point;
 }
 
@@ -102,6 +117,7 @@ void calculate_arc_angle(){
   float d;
   float n1;
   float n2;
+  float dis_to_end;
   float dir = calculate_rotation_dir();
 
   path = calculate_path();
@@ -110,12 +126,22 @@ void calculate_arc_angle(){
   perp_point = calculate_perp_loc();
   d = sqrt(pow(*perp_point - current_x, 2) + pow(*(perp_point+1) - current_y, 2));
   n1 = asin(d/L1);
-
-  if (dir > 0){
-    arc_angle_data_pub.publish(tf::createQuaternionMsgFromYaw((double)((-1)*(n1+n2))));
+  dis_to_end = sqrt(pow(current_x - end_x, 2) + pow(current_y - end_y, 2));
+  ROS_INFO_STREAM("dis_to_end - " << dis_to_end);
+  // if ((n1+n2) > 0){
+  if(dis_to_end < THRESHOLD){
+    ctrl.ctrl_base.data = 0;
+    ROS_INFO_STREAM("Stop");
   }else{
-    arc_angle_data_pub.publish(tf::createQuaternionMsgFromYaw((double)(n1+n2)));
+    ctrl.ctrl_base.data = 1;
+
   }
+
+  ctrl.angle.data = (n1+n2);
+  ctrl_data_pub.publish(ctrl);
+  // }else{
+    // arc_angle_data_pub.publish(tf::createQuaternionMsgFromYaw((double)(n1+n2)));
+  // }
 
 }
 
@@ -139,6 +165,73 @@ void visualize_path(){
 
   path_pub.publish(path);
 
+}
+
+void visualize_minor(){
+
+  float *perp_point;
+  perp_point = calculate_perp_loc();
+
+  float *end_point;
+  end_point = calculate_end_point();
+
+  // pubish perpendicular-current path
+  perp_path.header.stamp = ros::Time::now();
+  perp_path.header.frame_id = "map";
+
+  perp_pose.header.stamp = ros::Time::now();
+  perp_pose.header.frame_id = "map";
+  perp_pose.pose.position.x = current_x;
+  perp_pose.pose.position.y = current_y;
+  perp_pose.pose.position.z = 0;
+  perp_pose.pose.orientation.x = 0;
+  perp_pose.pose.orientation.y = 0;
+  perp_pose.pose.orientation.z = 0;
+  perp_pose.pose.orientation.w = 0;
+
+  perp_path.poses.push_back(perp_pose);
+
+  perp_pose.header.stamp = ros::Time::now();
+  perp_pose.header.frame_id = "map";
+  perp_pose.pose.position.x = *perp_point;
+  perp_pose.pose.position.y = *(perp_point+1);
+  perp_pose.pose.position.z = 0;
+  perp_pose.pose.orientation.x = 0;
+  perp_pose.pose.orientation.y = 0;
+  perp_pose.pose.orientation.z = 0;
+  perp_pose.pose.orientation.w = 0;
+
+  perp_path.poses.push_back(perp_pose);
+  perp_pub.publish(perp_path);
+
+  // publish current - end path
+  end_path.header.stamp = ros::Time::now();
+  end_path.header.frame_id = "map";
+
+  end_pose.header.stamp = ros::Time::now();
+  end_pose.header.frame_id = "map";
+  end_pose.pose.position.x = current_x;
+  end_pose.pose.position.y = current_y;
+  end_pose.pose.position.z = 0;
+  end_pose.pose.orientation.x = 0;
+  end_pose.pose.orientation.y = 0;
+  end_pose.pose.orientation.z = 0;
+  end_pose.pose.orientation.w = 0;
+
+  end_path.poses.push_back(end_pose);
+
+  end_pose.header.stamp = ros::Time::now();
+  end_pose.header.frame_id = "map";
+  end_pose.pose.position.x = *end_point;
+  end_pose.pose.position.y = *(end_point+1);
+  end_pose.pose.position.z = 0;
+  end_pose.pose.orientation.x = 0;
+  end_pose.pose.orientation.y = 0;
+  end_pose.pose.orientation.z = 0;
+  end_pose.pose.orientation.w = 0;
+
+  end_path.poses.push_back(end_pose);
+  endpt_pub.publish(end_path);
 }
 
 void get_heading_angle(const sensor_msgs::Imu::ConstPtr& msg){
@@ -165,14 +258,17 @@ int main(int argc, char **argv)
 
   ros::Subscriber imu_sub = node.subscribe("/imu", 100, get_heading_angle);
   ros::Subscriber loc_sub = node.subscribe("/odometry/filtered", 100, get_current_loc);
-  arc_angle_data_pub = node.advertise<geometry_msgs::Quaternion>("/arc_angle", 100);
+  ctrl_data_pub = node.advertise<custom_msg::ctrl_base>("/ctrl", 100);
   path_pub = node.advertise<nav_msgs::Path>("/path", 100);
+  perp_pub = node.advertise<nav_msgs::Path>("/perp_path", 100);
+  endpt_pub = node.advertise<nav_msgs::Path>("/endpt_path", 100);
 
-  ros::Rate loop_rate(30);
+  ros::Rate loop_rate(100);
 
 
   while(ros::ok()){
     visualize_path();
+    visualize_minor();
     calculate_arc_angle();
     ros::spinOnce();
     loop_rate.sleep();

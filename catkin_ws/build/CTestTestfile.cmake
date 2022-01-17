@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("map_data")
+subdirs("custom_msg")
 subdirs("fyp_sim")
 subdirs("keyboard_ctrl")
 subdirs("rotate_base")

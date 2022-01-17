@@ -132,6 +132,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/tharaka/ROS/fyp/catkin_ws/build/gtest/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/map_data/cmake_install.cmake")
+  include("/home/tharaka/ROS/fyp/catkin_ws/build/custom_msg/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/fyp_sim/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/keyboard_ctrl/cmake_install.cmake")
   include("/home/tharaka/ROS/fyp/catkin_ws/build/rotate_base/cmake_install.cmake")

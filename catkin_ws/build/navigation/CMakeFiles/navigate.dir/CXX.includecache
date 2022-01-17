@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/tharaka/ROS/fyp/catkin_ws/devel/include/custom_msg/ctrl_base.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/UInt8.h
+-
+std_msgs/Float32.h
+-
+
 /home/tharaka/ROS/fyp/catkin_ws/src/navigation/src/navigate.cpp
 ros/ros.h
 /home/tharaka/ROS/fyp/catkin_ws/src/navigation/src/ros/ros.h
@@ -24,6 +44,8 @@ geometry_msgs/PoseStamped.h
 nav_msgs/Odometry.h
 -
 vector
+-
+custom_msg/ctrl_base.h
 -
 
 /opt/ros/noetic/include/geometry_msgs/Point.h
@@ -1004,7 +1026,39 @@ geometry_msgs/Vector3.h
 geometry_msgs/Vector3.h
 -
 
+/opt/ros/noetic/include/std_msgs/Float32.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /opt/ros/noetic/include/std_msgs/Header.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/opt/ros/noetic/include/std_msgs/UInt8.h
 string
 -
 vector

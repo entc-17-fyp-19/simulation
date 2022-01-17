@@ -1,2 +1,2 @@
-fyp_sim:keyboard_ctrl:map_data:movebase:navigation:odometry:platform_controller:rotate_base
+custom_msg:fyp_sim:keyboard_ctrl:map_data:movebase:navigation:odometry:platform_controller:rotate_base
 -DCATKIN_DEVEL_PREFIX=/home/tharaka/ROS/fyp/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/tharaka/ROS/fyp/catkin_ws/install -G Unix Makefiles

@@ -424,6 +424,15 @@ controller_interface_DIR:PATH=/opt/ros/noetic/share/controller_interface/cmake
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
 
 //Value Computed by CMake
+custom_msg_BINARY_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/build/custom_msg
+
+//The directory containing a CMake configuration file for custom_msg.
+custom_msg_DIR:PATH=/home/tharaka/ROS/fyp/catkin_ws/devel/share/custom_msg/cmake
+
+//Value Computed by CMake
+custom_msg_SOURCE_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/src/custom_msg
+
+//Value Computed by CMake
 fyp_sim_BINARY_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/build/fyp_sim
 
 //Value Computed by CMake
@@ -534,6 +543,12 @@ movebase_BINARY_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/build/movebase
 
 //Value Computed by CMake
 movebase_SOURCE_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/src/movebase
+
+//Value Computed by CMake
+msgs_BINARY_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/build/msgs
+
+//Value Computed by CMake
+msgs_SOURCE_DIR:STATIC=/home/tharaka/ROS/fyp/catkin_ws/src/msgs
 
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/noetic/share/nav_msgs/cmake
@@ -790,7 +805,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

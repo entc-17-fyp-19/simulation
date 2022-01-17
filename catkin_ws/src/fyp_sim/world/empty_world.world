@@ -16,7 +16,7 @@
       <gravity>0 0 -9.8066</gravity>
       <ode>
         <solver>
-          <type>world</type>
+          <type>quick</type>
           <iters>10</iters>
           <sor>1.3</sor>
           <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
@@ -32,14 +32,14 @@
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>250</real_time_update_rate>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
-    </physics> -->
+    </physics>
 
 		<spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
       <latitude_deg>0</latitude_deg>
       <longitude_deg>0</longitude_deg>
       <elevation>0</elevation>
-    </spherical_coordinates>
+    </spherical_coordinates> -->
 
 	</world>
 </sdf>

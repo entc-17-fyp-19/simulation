@@ -3,26 +3,36 @@ robot_platform_control:
   joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50
+  gazebo_ros_control:
+    pid_gains:
+      back_LW_joint:
+        p: 1
+        i: 0
+        d: 0
 
+      back_RW_joint:
+        p: 1
+        i: 0
+        d: 0
   # Position and velocity Controllers ---------------------------------------
   back_LW_joint_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: back_LW_joint
-    pid: {p: 1, i: 0, d: 0}
+    # pid_gains: {p: 0.7, i: 0, d: 2}
 
   back_RW_joint_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: back_RW_joint
-    pid: {p: 1, i: 0, d: 0}
+    # pid_gains: {p: 0.7, i: 0, d: 2}
 
-  front_LW_con_joint_position_controller:
+  front_wheel_left_bar_joint_position_controller:
     type: effort_controllers/JointPositionController
-    joint: front_LW_con_joint
+    joint: front_wheel_left_bar_joint
     pid: {p: 0, i: 0, d: 0}
 
-  front_RW_con_joint_position_controller:
+  front_wheel_right_bar_joint_position_controller:
     type: effort_controllers/JointPositionController
-    joint: front_RW_con_joint
+    joint: front_wheel_right_bar_joint
     pid: {p: 0, i: 0, d: 0}
 
   front_RW_joint_position_controller:
